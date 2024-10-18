@@ -1,1 +1,42 @@
+🚀 Cloud Setup for Mac M1, M2, and M3 Users
+🌐 Why Use the Cloud for This Project?
+If you're working on a Mac equipped with an M1, M2, or M3 chip, it's recommended to utilize cloud computing for this project. Virtualization tools like Parallels Desktop can encounter errors due to the difference in architecture between ARM-based chips and x86 systems, which could affect the performance of certain Windows applications.
 
+By leveraging a cloud service like DigitalOcean, you can bypass these issues and enjoy a stable environment for your tasks. The steps below will guide you through setting up Windows Server on DigitalOcean, installing Sysmon (a valuable system monitoring tool), and configuring it for enhanced system monitoring.
+
+☁️ Step 1: Setting Up Windows on DigitalOcean
+As of now, DigitalOcean doesn't offer a direct option for running a Windows OS. However, you can still set up Windows Server by following a workaround.
+
+🛠️ Follow this YouTube Guide to get Windows Server running on a DigitalOcean droplet.
+This video will walk you through every step required to successfully install Windows Server.
+Even though this is a server version of Windows, it will fully support the tools and configurations necessary for your project.
+🛠️ Step 2: Installing and Configuring Sysmon for Advanced Monitoring
+Once your Windows Server is up and running, the next phase is setting up Sysmon (System Monitor). Sysmon is part of Microsoft's Sysinternals suite and is crucial for logging and detecting suspicious activity on your system. Here's a step-by-step process:
+
+🖥️ Download Sysmon:
+
+Visit the official Microsoft download page for Sysmon: Sysmon Download.
+Download and install Sysmon on your Windows Server.
+Sysmon monitors system activity and logs events, such as process creation, network connections, and file modifications, which are key for security operations.
+📜 Configure Sysmon with Olaf’s Modular Config:
+
+To enhance Sysmon's functionality, you'll use a pre-built configuration file provided by Olaf Hartong, which is modular and highly customizable.
+You can find the configuration file here: Sysmon Modular Config on GitHub.
+Pro Tip: This modular config file allows you to focus on specific event categories, optimizing performance and logging capabilities based on your needs.
+🎥 Follow the YouTube Guide for Installation Instructions:
+
+If you're new to Sysmon, you can follow this detailed YouTube tutorial at 08:35 to see how to properly configure and install Sysmon using Olaf’s modular configuration.
+This will ensure you get the most out of Sysmon’s monitoring capabilities.
+🔍 Why Sysmon?
+
+Sysmon is an essential tool for tracking detailed system activity, which is crucial for cybersecurity monitoring. It logs process creation, network connections, and file modification events in great detail.
+With Olaf's configuration, you gain an even more targeted approach for logging, filtering out unnecessary noise, and focusing on high-risk activity.
+This makes Sysmon one of the most powerful tools for threat detection, forensics, and incident response.
+💡 What’s Next?
+Once Sysmon is successfully configured, you'll be equipped with a highly effective monitoring setup on your Windows Server. You can now proceed with the next steps in your project, leveraging this powerful setup for in-depth system and network analysis.
+
+📝 Additional Notes:
+
+Remember to explore the features of DigitalOcean for managing snapshots, backups, and firewall settings to ensure the integrity and security of your environment.
+Stay updated on any changes to Sysmon’s configuration by following Olaf’s repository for new modules or improvements.
+⚡ Good luck, and enjoy the journey of mastering Sysmon and cloud-based monitoring on your Mac! 💻🔍
