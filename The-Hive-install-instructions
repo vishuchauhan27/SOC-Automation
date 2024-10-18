@@ -1,1 +1,118 @@
+🐝 Installing TheHive 5 on Ubuntu 22.04 LTS
 
+TheHive is an open-source and scalable incident response platform designed to make SOCs (Security Operations Centers) more efficient. This guide will walk you through the installation process, covering the necessary system requirements, dependencies, and detailed steps for setting up TheHive 5 along with its core components.
+
+💻 System Requirements
+RAM: 8 GB+ (16 GB recommended)
+Disk Space: 50 GB+
+Operating System: Ubuntu 22.04 LTS
+⚙️ Step-by-Step Installation Guide
+
+1️⃣ Install Dependencies
+Before we start, we need to install the required dependencies:
+
+$ sudo apt update
+$ sudo apt install wget gnupg apt-transport-https git ca-certificates ca-certificates-java curl software-properties-common python3-pip lsb-release
+
+2️⃣ Install Java (Amazon Corretto 11)
+TheHive requires Java, and we'll use Amazon Corretto 11. Follow these steps to install it:
+
+Add the Corretto GPG key:
+
+wget -qO- https://apt.corretto.aws/corretto.key | sudo gpg --dearmor -o /usr/share/keyrings/corretto.gpg
+
+Add the Corretto repository:
+
+$ echo "deb [signed-by=/usr/share/keyrings/corretto.gpg] https://apt.corretto.aws stable main" | sudo tee -a /etc/apt/sources.list.d/corretto.sources.list
+
+Update the package list and install Java:
+
+$ sudo apt update
+$ sudo apt install java-common java-11-amazon-corretto-jdk
+$ Set the JAVA_HOME environment variable:
+
+$ echo JAVA_HOME="/usr/lib/jvm/java-11-amazon-corretto" | sudo tee -a /etc/environment
+$ export JAVA_HOME="/usr/lib/jvm/java-11-amazon-corretto"
+
+3️⃣ Install Cassandra
+Cassandra is a distributed database system that TheHive uses. To install it:
+
+Add the Cassandra GPG key:
+
+$ wget -qO - https://downloads.apache.org/cassandra/KEYS | sudo gpg --dearmor -o /usr/share/keyrings/cassandra-archive.gpg
+
+Add the Cassandra repository:
+
+$ echo "deb [signed-by=/usr/share/keyrings/cassandra-archive.gpg] https://debian.cassandra.apache.org 40x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+
+Update the package list and install Cassandra:
+
+$ sudo apt update
+$ sudo apt install cassandra
+
+4️⃣ Install Elasticsearch
+
+Elasticsearch is used by TheHive for indexing and searching data.
+
+Add the Elasticsearch GPG key:
+
+$ wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+
+Install the required package:
+
+$ sudo apt-get install apt-transport-https
+
+Add the Elasticsearch repository:
+
+$ echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+Update the package list and install Elasticsearch:
+
+$ sudo apt update
+$ sudo apt install elasticsearch
+
+🔧 Optional Elasticsearch Configuration:
+
+To optimize performance, you can create a JVM options file for Elasticsearch:
+
+$ sudo mkdir -p /etc/elasticsearch/jvm.options.d
+$ sudo tee /etc/elasticsearch/jvm.options.d/jvm.options <<EOF
+-Dlog4j2.formatMsgNoLookups=true
+-Xms2g
+-Xmx2g
+EOF
+
+5️⃣ Install TheHive
+
+With all dependencies in place, you can now install TheHive 5.
+
+Add TheHive’s GPG key:
+
+$ wget -O- https://archives.strangebee.com/keys/strangebee.gpg | sudo gpg --dearmor -o /usr/share/keyrings/strangebee-archive-keyring.gpg
+
+Add TheHive’s repository:
+
+$ echo 'deb [signed-by=/usr/share/keyrings/strangebee-archive-keyring.gpg] https://deb.strangebee.com thehive-5.2 main' | sudo tee -a /etc/apt/sources.list.d/strangebee.list
+Update the package list and install TheHive:
+
+$ sudo apt-get update
+$ sudo apt-get install -y thehive
+
+🔐 Accessing TheHive
+
+Once the installation is complete, TheHive will be accessible on port 9000.
+
+--> URL: http://<your-server-ip>:9000
+
+Default Credentials:
+
+Username: admin@thehive.local
+Password: secret
+
+🎉 You’re All Set!
+
+Now that you’ve successfully installed TheHive 5, you can begin using it for your incident response needs. Make sure to change the default credentials and fine-tune the configurations to meet your security requirements.
+
+🚀 Next Steps:
+
+Explore TheHive’s API and automation capabilities.
+Connect it with other SOC tools for seamless integration and incident management.
