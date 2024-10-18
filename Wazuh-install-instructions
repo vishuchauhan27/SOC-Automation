@@ -1,1 +1,55 @@
+🛡️ Installing Wazuh 4.7 on Ubuntu 22.04 LTS
 
+Wazuh is a free, open-source security monitoring solution for threat detection, integrity monitoring, incident response, and compliance management. This guide will walk you through installing Wazuh 4.7 on Ubuntu 22.04 LTS, covering system specifications, installation steps, and how to extract the necessary credentials.
+
+💻 System Requirements
+RAM: 8 GB or more
+Disk Space: 50 GB or more
+Operating System: Ubuntu 22.04 LTS
+
+⚙️ Step-by-Step Installation Guide
+
+1️⃣ Install Wazuh 4.7
+
+To simplify the installation process, Wazuh provides an all-in-one installation script that handles everything for you. Here’s how to use it:
+
+Run the following command to download and install Wazuh:
+
+$ curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh && sudo bash ./wazuh-install.sh -a
+
+This command downloads the Wazuh installation script and immediately executes it.
+
+The -a flag installs all necessary components for a full Wazuh setup, including the Wazuh Manager, Wazuh API, Wazuh Dashboard, and Elastic Stack.
+
+🔄 Note: This process may take a while depending on your system resources and network speed.
+
+2️⃣ Extract Wazuh Credentials
+
+Once the installation is complete, you'll need to extract the credentials for Wazuh Manager and Wazuh Dashboard:
+
+Use the following command to extract the credentials from the installation files:
+
+$ sudo tar -xvf wazuh-install-files.tar
+
+This command unpacks the installation file that contains your Wazuh Manager and Dashboard login credentials.
+
+Once extracted, check the folder for a text file with the credentials you’ll need to log in to the Wazuh Dashboard and the API.
+
+🔐 Accessing Wazuh
+
+Once the installation is complete and the credentials have been extracted, you can access the Wazuh Dashboard by navigating to your server’s IP in a web browser:
+
+URL: https://<your-server-ip>
+
+Credentials:
+Username and password for the Wazuh Dashboard and API will be available in the extracted credentials file.
+
+🎉 You're Ready to Go!
+
+Now that Wazuh is installed, you can start monitoring your infrastructure for threats, performing incident response tasks, and ensuring compliance across your systems.
+
+🚀 Next Steps:
+
+Explore Wazuh's Dashboard for detailed monitoring insights.
+Integrate Elastic Stack for extended capabilities like log analysis and reporting.
+Fine-tune your Wazuh installation for custom rules, alerts, and notifications.
